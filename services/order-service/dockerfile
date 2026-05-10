@@ -1,7 +1,7 @@
 FROM golang@sha256:8d22e29d960bc50cd025d93d5b7c7d220b1ee9aa7a239b3c8f55a57e987e8d45 AS builder
 # sha value is for golang:1.25-alpine base image
 
-WORKDIR /services/api-gateway
+WORKDIR /services/order-service
 
 COPY go.mod go.sum ./
 
@@ -9,21 +9,21 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /services/api-gateway/api-gateway main.go
+RUN go build -o /services/order-service/order-service main.go
 
 FROM alpine@sha256:310c62b5e7ca5b08167e4384c68db0fd2905dd9c7493756d356e893909057601 AS production
 # sha value is for alpine:3.22 base image
 
 RUN adduser -u 10000 -D rihad
 
-WORKDIR /services/api-gateway
+WORKDIR /services/order-service
 
-COPY --from=builder /services/api-gateway /services/api-gateway
+COPY --from=builder /services/order-service /services/order-service
 
-RUN chown -R 10000:10000 /services/api-gateway
+RUN chown -R 10000:10000 /services/order-service
 
 USER rihad
 
-EXPOSE 8080
+EXPOSE 8081
 
-CMD ["/services/api-gateway/api-gateway"]
+CMD ["/services/order-service/order-service"]
