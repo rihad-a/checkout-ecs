@@ -46,6 +46,6 @@ resource "cloudflare_dns_record" "route53-ns" {
   zone_id = data.cloudflare_zone.domain_zone.zone_id
 }
 
-# ECR Repo Creation
+
 
 
