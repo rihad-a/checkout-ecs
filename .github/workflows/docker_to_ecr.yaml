@@ -69,4 +69,6 @@ jobs:
         docker tag ${{matrix.service}} ${{ secrets.ECR_REPOSITORY }}/${{matrix.service}}:latest
 
     - name: Pushing docker image
-      run: docker push ${{ secrets.ECR_REPOSITORY }} --all-tags
+      run: |
+        docker push ${{ secrets.ECR_REPOSITORY }}/${{matrix.service}}:${{ github.sha }}
+        docker push ${{ secrets.ECR_REPOSITORY }}/${{matrix.service}}:latest
