@@ -1,49 +1,5 @@
 # General Variables 
 
-variable "domain_name" {
-  type        = string
-  description = "The domain name for the infrastructure"
-}
-
-# VPC Variables
-
-variable "public_subnets" {
-    type = list(object({
-        cidr_block = string
-        availability_zone = string
-        map_public_ip_on_launch_public = bool
-    }))
-    description = "Two public subnets"
-}
-
-variable "private_subnets" {
-    type = list(object({
-        cidr_block = string
-        availability_zone = string
-        map_public_ip_on_launch_private = bool
-    }))
-    description = "Two private subnets"
-}
-
-# ALB Variables
-
-variable "cidr_block" {
-  type = string
-  description = "The CIDR block for the alb security group rules"
-}
-
-variable "port_http" {
-  type = number
-  description = "The port for the alb HTTP listener"
-}
-
-variable "port_https" {
-  type = number
-  description = "The port for the alb HTTPS listener"
-}
-
-# RDS Variables
-
 variable "db_identifier" {
   type        = string
   description = "Identifier for the RDS instance"
@@ -88,3 +44,11 @@ variable "db_parameter_group_name" {
   type        = string
   description = "Parameter group name for the RDS instance"
 }
+
+# Module Variables
+
+variable "private_subnets" {
+  type = list(string)
+  description = "The private subnet ids from the vpc module"
+}
+
