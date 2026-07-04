@@ -1,4 +1,4 @@
-# General Variables 
+# RDS Variables 
 
 variable "db_identifier" {
   type        = string

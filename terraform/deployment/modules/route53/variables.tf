@@ -1,4 +1,4 @@
-# General Variables 
+# Route53 Variables 
 
 variable "domain_name" {
   type        = string

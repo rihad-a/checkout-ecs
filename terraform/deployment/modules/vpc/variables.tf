@@ -1,3 +1,5 @@
+# VPC Variables 
+
 variable "public_subnets" {
     type = list(object({
         cidr_block = string
