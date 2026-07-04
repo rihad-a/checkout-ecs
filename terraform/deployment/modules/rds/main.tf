@@ -28,4 +28,18 @@ resource "aws_db_subnet_group" "checkout_db_subnet_group" {
   subnet_ids = var.private_subnets
 }
 
+# Creating a secret to store the RDS url
+
+resource "aws_secretsmanager_secret" "db_secret" {
+  name = "${var.db_identifier}-db-secret"
+}
+
+resource "aws_secretsmanager_secret_version" "db_secret_value" {
+  secret_id = aws_secretsmanager_secret.db_secret.id
+
+  secret_string = jsonencode({
+    DATABASE_URL = "postgres://${var.db_username}:${random_password.db_password.result}@${aws_db_instance.checkout_db.address}:5432/${var.db_name}"
+  })
+}
+
 
