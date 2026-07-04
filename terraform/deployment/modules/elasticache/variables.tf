@@ -41,3 +41,11 @@ variable "redis_multi_az_enabled" {
   description = "Enable Multi-AZ replication for Redis"
 
 }
+
+# Module Variables
+
+variable "private_subnets" {
+  type = list(string)
+  description = "The private subnet ids from the vpc module"
+}
+
