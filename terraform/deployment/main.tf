@@ -45,3 +45,19 @@ module "rds" {
     # Use these outputs
     private_subnets = module.vpc.private_subnets
 }
+
+module "elasticache" {
+    source = "./modules/elasticache"
+
+    redis_replication_group_id = var.redis_replication_group_id
+    redis_description = var.redis_description
+    redis_engine_version = var.redis_engine_version
+    redis_node_type = var.redis_node_type
+    redis_num_cache_clusters = var.redis_num_cache_clusters
+    redis_parameter_group_name = var.redis_parameter_group_name
+    redis_automatic_failover_enabled = var.redis_automatic_failover_enabled
+    redis_multi_az_enabled = var.redis_multi_az_enabled
+
+    # Use these outputs
+    private_subnets = module.vpc.private_subnets
+}
