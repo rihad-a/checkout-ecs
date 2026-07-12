@@ -61,3 +61,19 @@ module "elasticache" {
     # Use these outputs
     private_subnets = module.vpc.private_subnets
 }
+
+module "sqs" {
+    source = "./modules/sqs"
+
+    sqs_queue_name = var.sqs_queue_name
+    sqs_delay_seconds = var.sqs_delay_seconds
+    sqs_max_message_size = var.sqs_max_message_size
+    sqs_message_retention_seconds = var.sqs_message_retention_seconds
+    sqs_receive_wait_time_seconds = var.sqs_receive_wait_time_seconds
+    sqs_visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
+    sqs_fifo_queue = var.sqs_fifo_queue
+    sqs_content_based_deduplication = var.sqs_content_based_deduplication
+    sqs_max_receive_count = var.sqs_max_receive_count
+    sqs_dead_letter_queue_name = var.sqs_dead_letter_queue_name
+    sqs_dead_letter_message_retention_seconds = var.sqs_dead_letter_message_retention_seconds
+}
